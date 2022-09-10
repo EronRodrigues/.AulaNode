@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <script src="/jwt-decode.js"></script>
+</head>
+<body>
+    <a href="cadastro.html" id="cadastro">Cadastro</a> 
+    <a href="consulta.html" id="consulta">Consulta</a> 
+    <a href="login.html" id="login">Login</a>
+    <a href="logout.html" id="logout">Logout</a>
+
+    <script>
+        var token = localStorage.getItem('login')
+        if (token != null) {
+            var payload_token = jwt_decode(token)
+            document.getElementById("login").innerHTML = ""
+            if (payload_token.perfil != 'ADM') {
+                document.getElementById("cadastro").innerHTML = ""
+            }
+        }
+        else {
+            document.getElementById("logout").innerHTML = ""
+        }
+
+    </script>
+</body>
+</html>
